@@ -1,0 +1,22 @@
+{
+  "name": "@visactor/vchart-svg-plugin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@visactor/vutils": "0.18.x",
+    "@visactor/vrender-core": "0.19.x"
+  },
+  "devDependencies": {
+    "@visactor/vutils": "0.18.14",
+    "@visactor/vrender-core": "0.19.23",
+    "@visactor/vchart": "1.11.11",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0"
+  }
+}
