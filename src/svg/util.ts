@@ -1,5 +1,3 @@
-import { Color, RGB } from "@visactor/vutils";
-
 export const EPS = 1e-6;
 
 export function scientificToDecimal(str: string) {
@@ -91,8 +89,12 @@ export function convertCommonStyle(
         value.gradient
       ) {
         if (value.gradient === "conical" && graphic.type === "arc") {
-          res.mask = `url(#${generateGradientKey(key, graphic)})`;
-          res[convertAttributeName(key)] = value.stops?.[0]?.color;
+          // res.mask = `url(#${generateGradientKey(key, graphic)})`;
+          const stops = value.stops;
+
+          if (stops && stops.length) {
+            res[convertAttributeName(key)] = stops[0].color;
+          }
         } else {
           res[convertAttributeName(key)] = `url(#${generateGradientKey(
             key,
@@ -150,81 +152,89 @@ export function generateGradient(style: any, graphic: any): string {
             graphic
           )}" ${stopStr}</radialGradient>`;
         } else if (gradient.gradient === "conical") {
-          const { outerRadius, x = 0, y = 0 } = style;
-          const { startAngle, endAngle, stops } = gradient;
-          const deltaAngle = Math.abs(endAngle - startAngle);
-          const width = outerRadius;
-
-          if (deltaAngle <= 0 || width <= 0 || !stops || stops.length < 2) {
-            return "";
-          }
-
-          const count = Math.ceil((180 * deltaAngle) / Math.PI);
-          const height = (outerRadius * deltaAngle) / count;
-          const stopColors = stops
-            .sort((a: any, b: any) => a.offset - b.offset)
-            .map((stop: any) => {
-              return {
-                ...stop,
-                rgb: Color.parseColorString(stop.color),
-              };
-            });
-          const getColorByRatio = (ratio: number) => {
-            let fromColor = stopColors[0];
-            let toColor = stopColors[0];
-
-            for (let i = 0, len = stopColors.length; i < len; i++) {
-              const stop = stopColors[i];
-              const nextStop = stopColors[i + 1] ?? stop;
-
-              if (ratio >= stop.offset && ratio <= nextStop.offset) {
-                fromColor = stop;
-                toColor = nextStop;
-              }
-            }
-
-            if (fromColor.offset === toColor.offset) {
-              return toColor.color;
-            }
-
-            const colorRatio =
-              (ratio - fromColor.offset) / (toColor.offset - fromColor.offset);
-            const r =
-              fromColor.rgb.r + colorRatio * (toColor.rgb.r - fromColor.rgb.r);
-            const g =
-              fromColor.rgb.g + colorRatio * (toColor.rgb.g - fromColor.rgb.g);
-            const b =
-              fromColor.rgb.b + colorRatio * (toColor.rgb.b - fromColor.rgb.b);
-            const a =
-              fromColor.rgb.opacity +
-              colorRatio * (toColor.rgb.opacity - fromColor.rgb.opacity);
-
-            return new RGB(r, g, b, a).toString();
-          };
-
-          const rects = new Array(1)
-            .fill(0)
-            .map((entry: number, index: number) => {
-              const ratio = index / count;
-              const angle = startAngle + (endAngle - startAngle) * ratio;
-
-              // return `<rect x="0" y="0" width="${outerRadius}" height="${outerRadius}"  transform="translate(${x}, ${y}) rotate(${
-              //   (180 * angle) / Math.PI
-              // } ${0} ${height / 2})" fill="${getColorByRatio(ratio)}" />`;
-
-              return `<rect x="0" y="0" width="${outerRadius}" height="${outerRadius}"  transform="rotate(${
-                (180 * angle) / Math.PI
-              } ${0} ${height / 2})" fill="black" />`;
-            });
-
-          return `<mask id=${generateGradientKey(key, graphic)}>
-            <rect width="${2 * outerRadius}" height="${
-            2 * outerRadius
-          }" fill="white" />
-          ${rects.join("")}</mask>`;
-        } else {
+          // let { outerRadius, x = 0, y = 0, lineWidth } = style;
+          // const { startAngle, endAngle, stops } = gradient;
+          // let deltaAngle = endAngle - startAngle;
+          // const width = outerRadius;
+          // if (
+          //   Math.abs(deltaAngle) <= 0 ||
+          //   width <= 0 ||
+          //   !stops ||
+          //   stops.length < 2
+          // ) {
+          //   return "";
+          // }
+          // const count = Math.ceil((180 * deltaAngle) / Math.PI);
+          // outerRadius += lineWidth;
+          // const stopColors = stops
+          //   .sort((a: any, b: any) => a.offset - b.offset)
+          //   .map((stop: any) => {
+          //     return {
+          //       ...stop,
+          //       rgb: Color.parseColorString(stop.color),
+          //     };
+          //   });
+          // const getColorByRatio = (ratio: number) => {
+          //   let fromColor = stopColors[0];
+          //   let toColor = stopColors[0];
+          //   for (let i = 0, len = stopColors.length; i < len; i++) {
+          //     const stop = stopColors[i];
+          //     const nextStop = stopColors[i + 1] ?? stop;
+          //     if (ratio >= stop.offset && ratio <= nextStop.offset) {
+          //       fromColor = stop;
+          //       toColor = nextStop;
+          //     }
+          //   }
+          //   if (fromColor.offset === toColor.offset) {
+          //     return toColor.color;
+          //   }
+          //   const colorRatio =
+          //     (ratio - fromColor.offset) / (toColor.offset - fromColor.offset);
+          //   const r =
+          //     fromColor.rgb.r + colorRatio * (toColor.rgb.r - fromColor.rgb.r);
+          //   const g =
+          //     fromColor.rgb.g + colorRatio * (toColor.rgb.g - fromColor.rgb.g);
+          //   const b =
+          //     fromColor.rgb.b + colorRatio * (toColor.rgb.b - fromColor.rgb.b);
+          //   const a =
+          //     fromColor.rgb.opacity +
+          //     colorRatio * (toColor.rgb.opacity - fromColor.rgb.opacity);
+          //   return new RGB(r, g, b, a).toString();
+          // };
+          // const stepAngle = deltaAngle / count;
+          // let minX = Infinity;
+          // let maxX = -Infinity;
+          // let minY = Infinity;
+          // let maxY = -Infinity;
+          // const triangles = new Array(count)
+          //   .fill(0)
+          //   .map((entry: number, index: number) => {
+          //     const ratio = index / count;
+          //     const sa = startAngle + index * stepAngle;
+          //     const ea = startAngle + (index + 1) * 1.1 * stepAngle;
+          //     const x1 = x + Math.cos(sa) * outerRadius;
+          //     const y1 = y + Math.sin(sa) * outerRadius;
+          //     const x2 = x + Math.cos(ea) * outerRadius;
+          //     const y2 = y + Math.sin(ea) * outerRadius;
+          //     const color = getColorByRatio(ratio);
+          //     minX = Math.min(x1, x2, x, minX);
+          //     minY = Math.min(y1, y2, y, minY);
+          //     maxX = Math.max(x1, x2, x, minX);
+          //     maxY = Math.max(y1, y2, y, minY);
+          //     return `<path data-index="${index}" d="M${x},${y}L${x1},${y1}L${x2},${y2}Z" fill="${color}" />`;
+          //   });
+          // //  patternUnits = "userSpaceOnUse";
+          // return `<pattern id="${generateGradientKey(
+          //   key,
+          //   graphic
+          // )}" x="${minX}" y="${minY}" width="${maxX - minX}" height="${
+          //   maxY - minY
+          // }" patternUnits = "userSpaceOnUse">
+          //  <g>
+          //  ${triangles.join("")}
+          //  </g>
+          // </pattern>`;
         }
-        console.log(gradient, graphic);
       }
       return "";
     })

@@ -2,14 +2,18 @@
  * algorithm detail see: https://stackoverflow.com/a/24780108
  */
 
-import { IPolygon, IPolygonGraphicAttribute } from "@visactor/vrender-core";
+import {
+  IGraphic,
+  IPolygon,
+  IPolygonGraphicAttribute,
+} from "@visactor/vrender-core";
 import { parseCornerRadiusPath } from "./util";
 
 export function convertPolygonStyle(
   attribute: IPolygonGraphicAttribute = {},
   graphic: IPolygon
-): Record<string, any> {
-  const style: Record<string, any> = {};
+): Record<string, string> {
+  const style: Record<string, string> = {};
   const { cornerRadius, points, closePath } = attribute;
 
   if (cornerRadius) {
@@ -19,7 +23,7 @@ export function convertPolygonStyle(
       closePath
     );
   } else {
-    let customPath = (graphic as any).toCustomPath().toString();
+    let customPath = (graphic as IGraphic as any).toCustomPath().toString();
 
     if (!closePath) {
       customPath = customPath.slice(0, customPath.length - 1);

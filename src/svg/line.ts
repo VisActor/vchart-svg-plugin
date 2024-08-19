@@ -1,4 +1,4 @@
-import { convertCommonStyle, parsePathFromCurves } from "./util";
+import { parsePathFromCurves } from "./util";
 
 export function convertLineStyle(
   attribute: any = {},

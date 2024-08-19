@@ -1,5 +1,5 @@
 import { convertArcStyle } from "./arc";
-import { generatePattern, generatePatternId } from "./parttern";
+import { generatePattern, generatePatternId } from "./pattern";
 import { convertPolygonStyle } from "./polygon";
 import { convertRectStyle } from "./rect";
 import { convertGroupStyle } from "./group";

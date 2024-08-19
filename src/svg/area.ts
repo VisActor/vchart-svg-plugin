@@ -1,4 +1,4 @@
-import { convertCommonStyle, parsePathFromCurves, parsePoints } from "./util";
+import { parsePathFromCurves, parsePoints } from "./util";
 
 export function parseAreaLine(point: any) {
   const x = point.x;

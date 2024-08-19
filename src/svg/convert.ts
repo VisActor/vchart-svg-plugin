@@ -1,4 +1,3 @@
-import { isString } from "@visactor/vutils";
 import { parseGroup } from "./graphic";
 import {
   convertCommonStyle,

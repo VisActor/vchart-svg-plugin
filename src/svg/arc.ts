@@ -158,7 +158,6 @@ export function convertArcStyle(
 
   const deltaAngle = Math.abs(endAngle - startAngle);
   const clockwise: boolean = endAngle > startAngle;
-  let collapsedToLine: boolean = false;
   // 规范化outerRadius和innerRadius
   if (outerRadius < innerRadius) {
     const temp = outerRadius;
@@ -173,14 +172,21 @@ export function convertArcStyle(
     // Or is it a circle or annulus?
     let x = cx + outerRadius * Math.cos(startAngle);
     let y = cy + outerRadius * Math.sin(startAngle);
+    const half = clockwise ? startAngle + Math.PI : startAngle - Math.PI;
+    let x1 = cx + outerRadius * Math.cos(half);
+    let y1 = cy + outerRadius * Math.sin(half);
     path += `M${x},${y}`;
-    path += `A${outerRadius},${outerRadius},0,1,0,${x},${y}`;
+    path += `A${outerRadius},${outerRadius},0,1,${+clockwise},${x1},${y1}A${outerRadius},${outerRadius},0,1,${+clockwise},${x},${y}`;
 
     if (innerRadius > EPS) {
-      (x = cx + innerRadius * Math.cos(endAngle)),
-        (y = cy + innerRadius * Math.sin(endAngle));
-      path += `M${x},${y}`;
-      path += `A${innerRadius},${innerRadius},0,1,1,${x},${y}`;
+      x = cx + innerRadius * Math.cos(endAngle);
+      y = cy + innerRadius * Math.sin(endAngle);
+      const half = clockwise ? endAngle + Math.PI : endAngle - Math.PI;
+      let x1 = cx + innerRadius * Math.cos(half);
+      let y1 = cy + innerRadius * Math.sin(half);
+
+      path += `L${x},${y}`;
+      path += `A${innerRadius},${innerRadius},0,1,${+!clockwise},${x1},${y1}A${innerRadius},${innerRadius},0,1,${+!clockwise},${x},${y}`;
     }
   } else {
     const {
@@ -220,7 +226,6 @@ export function convertArcStyle(
       if (partStroke && (partStroke[3] || partStroke[1])) {
         path += `M${cx + xors},${cy + yors}`;
       }
-      collapsedToLine = true;
     } else if (limitedOcr > EPS) {
       const cornerRadiusStart = Math.min(outerCornerRadiusStart, limitedOcr);
       const cornerRadiusEnd = Math.min(outerCornerRadiusEnd, limitedOcr);
@@ -334,7 +339,6 @@ export function convertArcStyle(
       } else {
         path += `M${cx + xire}, ${cy + yire}`;
       }
-      collapsedToLine = true;
     } else if (limitedIcr > EPS) {
       const cornerRadiusStart = Math.min(innerCornerRadiusStart, limitedIcr);
       const cornerRadiusEnd = Math.min(innerCornerRadiusEnd, limitedIcr);

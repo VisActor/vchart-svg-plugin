@@ -2,7 +2,7 @@ import { isNil, parseCornerRadiusPath } from "./util";
 
 export function convertRectStyle(
   attribute: any = {},
-  graphic: any
+  graphic?: any
 ): Record<string, any> {
   const style: Record<string, any> = {};
   let { x = 0, y = 0, width = 0, height = 0, cornerRadius } = attribute;
