@@ -4,19 +4,22 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build"
+    "dev": "cd ./demo && vite",
+    "build": "rollup -c",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "peerDependencies": {
-    "@visactor/vutils": "0.18.x",
-    "@visactor/vrender-core": "0.19.x"
+    "@visactor/vutils": ">=0.18.0",
+    "@visactor/vrender-core": ">=0.18.0"
   },
   "devDependencies": {
     "@visactor/vutils": "0.18.14",
-    "@visactor/vrender-core": "0.19.23",
-    "@visactor/vchart": "1.11.11",
+    "@visactor/vrender-core": "0.20.0",
+    "@visactor/vchart": "1.12.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.0",
+    "glob": "^10.4.1",
+    "@babel/core": "^7.25.2",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@rollup/plugin-commonjs": "^11.0.1",
@@ -29,6 +32,7 @@
     "@typescript-eslint/parser": "^7.2.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "lint-staged": "15.2.7"
+    "lint-staged": "15.2.7",
+    "tslib": "^2.6.3"
   }
 }

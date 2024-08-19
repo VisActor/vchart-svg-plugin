@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@ampproject/remapping@^2.2.0":
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.3.0.tgz#ed441b6fa600072520ce18b43d2c8cc8caecc7f4"
+  integrity sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==
+  dependencies:
+    "@jridgewell/gen-mapping" "^0.3.5"
+    "@jridgewell/trace-mapping" "^0.3.24"
+
 "@babel/code-frame@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.24.7.tgz#882fd9e09e8ee324e496bd040401c6f046ef4465"
@@ -14,6 +22,27 @@
   version "7.25.2"
   resolved "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.25.2.tgz#e41928bd33475305c586f6acbbb7e3ade7a6f7f5"
   integrity sha512-bYcppcpKBvX4znYaPEeFau03bp89ShqNMLs+rmdptMw+heSZh9+z84d2YG+K7cYLbWwzdjtDoW/uqZmPjulClQ==
+
+"@babel/core@^7.25.2":
+  version "7.25.2"
+  resolved "https://registry.npmjs.org/@babel/core/-/core-7.25.2.tgz#ed8eec275118d7613e77a352894cd12ded8eba77"
+  integrity sha512-BBt3opiCOxUr9euZ5/ro/Xv8/V7yJ5bjYMqG/C1YAo8MIKAnumZalCN+msbci3Pigy4lIQfPUpfMM27HMGaYEA==
+  dependencies:
+    "@ampproject/remapping" "^2.2.0"
+    "@babel/code-frame" "^7.24.7"
+    "@babel/generator" "^7.25.0"
+    "@babel/helper-compilation-targets" "^7.25.2"
+    "@babel/helper-module-transforms" "^7.25.2"
+    "@babel/helpers" "^7.25.0"
+    "@babel/parser" "^7.25.0"
+    "@babel/template" "^7.25.0"
+    "@babel/traverse" "^7.25.2"
+    "@babel/types" "^7.25.2"
+    convert-source-map "^2.0.0"
+    debug "^4.1.0"
+    gensync "^1.0.0-beta.2"
+    json5 "^2.2.3"
+    semver "^6.3.1"
 
 "@babel/generator@^7.25.0":
   version "7.25.0"
@@ -100,7 +129,7 @@
     "@babel/traverse" "^7.24.7"
     "@babel/types" "^7.24.7"
 
-"@babel/helper-module-transforms@^7.24.7", "@babel/helper-module-transforms@^7.24.8", "@babel/helper-module-transforms@^7.25.0":
+"@babel/helper-module-transforms@^7.24.7", "@babel/helper-module-transforms@^7.24.8", "@babel/helper-module-transforms@^7.25.0", "@babel/helper-module-transforms@^7.25.2":
   version "7.25.2"
   resolved "https://registry.npmjs.org/@babel/helper-module-transforms/-/helper-module-transforms-7.25.2.tgz#ee713c29768100f2776edf04d4eb23b8d27a66e6"
   integrity sha512-BjyRAbix6j/wv83ftcVJmBt72QtHI56C7JXZoG2xATiLpmoC7dpd8WnkikExHDVPpi/3qCmO6WY1EaXOluiecQ==
@@ -178,6 +207,14 @@
   dependencies:
     "@babel/template" "^7.25.0"
     "@babel/traverse" "^7.25.0"
+    "@babel/types" "^7.25.0"
+
+"@babel/helpers@^7.25.0":
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/helpers/-/helpers-7.25.0.tgz#e69beb7841cb93a6505531ede34f34e6a073650a"
+  integrity sha512-MjgLZ42aCm0oGjJj8CtSM3DB8NOOf8h2l7DCTePJs29u+v7yO/RBX9nShlKMgFnRks/Q4tBAe7Hxnov9VkGwLw==
+  dependencies:
+    "@babel/template" "^7.25.0"
     "@babel/types" "^7.25.0"
 
 "@babel/highlight@^7.24.7":
@@ -1104,6 +1141,18 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
+"@isaacs/cliui@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"
+  integrity sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==
+  dependencies:
+    string-width "^5.1.2"
+    string-width-cjs "npm:string-width@^4.2.0"
+    strip-ansi "^7.0.1"
+    strip-ansi-cjs "npm:strip-ansi@^6.0.1"
+    wrap-ansi "^8.1.0"
+    wrap-ansi-cjs "npm:wrap-ansi@^7.0.0"
+
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.5"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.5.tgz#dcce6aff74bdf6dad1a95802b69b04a2fcb1fb36"
@@ -1156,6 +1205,11 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@pkgjs/parseargs@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
+  integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
 "@resvg/resvg-js-android-arm-eabi@2.4.1":
   version "2.4.1"
@@ -1541,36 +1595,36 @@
   resolved "https://registry.npmjs.org/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@visactor/vchart@1.11.11":
-  version "1.11.11"
-  resolved "https://bnpm.byted.org/@visactor/vchart/-/vchart-1.11.11.tgz#54f70b53b063cc749e22132526865b13333e966c"
-  integrity sha512-sL+gJojsiaLDlTxa0TWAgEgcSo7na8zuTX1nz6ZG4EG7Jurv9+vnY3JR3nD2qKz5QPkhST9dZZBN6SYjdRx4nQ==
+"@visactor/vchart@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.npmjs.org/@visactor/vchart/-/vchart-1.12.0.tgz#927295afaf45193476005be7277270259742ae0e"
+  integrity sha512-GMC5IoQu0cTM1IdvPO6r9EpO3UBJfQbDN2FdOquU8AD1yBK1VfR2R+oQ8j6u73PSAKwhiFN+e0+S7SzWo41slA==
   dependencies:
-    "@visactor/vdataset" "~0.18.10"
-    "@visactor/vgrammar-core" "0.13.19"
-    "@visactor/vgrammar-hierarchy" "0.13.19"
-    "@visactor/vgrammar-projection" "0.13.19"
-    "@visactor/vgrammar-sankey" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vgrammar-venn" "0.13.19"
-    "@visactor/vgrammar-wordcloud" "0.13.19"
-    "@visactor/vgrammar-wordcloud-shape" "0.13.19"
-    "@visactor/vrender-components" "0.19.23"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vscale" "~0.18.10"
-    "@visactor/vutils" "~0.18.10"
-    "@visactor/vutils-extension" "1.11.11"
+    "@visactor/vdataset" "~0.18.14"
+    "@visactor/vgrammar-core" "0.14.0"
+    "@visactor/vgrammar-hierarchy" "0.14.0"
+    "@visactor/vgrammar-projection" "0.14.0"
+    "@visactor/vgrammar-sankey" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vgrammar-venn" "0.14.0"
+    "@visactor/vgrammar-wordcloud" "0.14.0"
+    "@visactor/vgrammar-wordcloud-shape" "0.14.0"
+    "@visactor/vrender-components" "0.20.0"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vscale" "~0.18.14"
+    "@visactor/vutils" "~0.18.14"
+    "@visactor/vutils-extension" "1.12.0"
 
-"@visactor/vdataset@~0.18.10":
-  version "0.18.13"
-  resolved "https://bnpm.byted.org/@visactor/vdataset/-/vdataset-0.18.13.tgz#25ddfbe46bec5fb829ab45ca3e9927d6764ef3d3"
-  integrity sha512-LVfqyDsWHDUPSBIcMJiaocqntQM/L8wUfcPVXkD6VbksUE9rLU/4decmyC+pTlc6I/S7mQWfhsIuRUAi5TXN2w==
+"@visactor/vdataset@~0.18.14":
+  version "0.18.14"
+  resolved "https://registry.npmjs.org/@visactor/vdataset/-/vdataset-0.18.14.tgz#32b7d22052b8609041ed3b4ba43ce5ace33ad2bc"
+  integrity sha512-9Oov72NOR+elxRjvNVN7Ai4ipDy2/pFjRgB4BEQL436mkz9Z9zadM+qt/m/lry9SoVdZSa54HCW26rCHmtcZXA==
   dependencies:
     "@turf/flatten" "^6.5.0"
     "@turf/helpers" "^6.5.0"
     "@turf/rewind" "^6.5.0"
-    "@visactor/vutils" "0.18.13"
+    "@visactor/vutils" "0.18.14"
     d3-dsv "^2.0.0"
     d3-geo "^1.12.1"
     d3-hexbin "^0.2.2"
@@ -1585,154 +1639,146 @@
     simplify-geojson "^1.0.4"
     topojson-client "^3.1.0"
 
-"@visactor/vgrammar-coordinate@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-coordinate/-/vgrammar-coordinate-0.13.19.tgz#97a03c0aec05e33be41a3eca5b14554c287ed0d7"
-  integrity sha512-YAO3IQg97lmEqfZhBIdg/ST0D2IlzcQYCr56Smp7aYr0J0NJAB9zYwG9ssJzKQGENVe/RfyjWlFuJEUkmamH+w==
+"@visactor/vgrammar-coordinate@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-coordinate/-/vgrammar-coordinate-0.14.0.tgz#51d172d2cb822fe8d29ec8dbd19fab2eb3069fb1"
+  integrity sha512-9ZxQ0BQmcxi70Bl5oHRe2xd4UVPTbjdHhyQOIT1l4X6fVUwyIf2nRibQILHOlQj+KN8AhrdQIuYp1rD6khecpg==
   dependencies:
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vgrammar-core@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-core/-/vgrammar-core-0.13.19.tgz#3eeeaaea7d02f77ffee2bf606885a85327cfcc0a"
-  integrity sha512-WSaUWkXQ3zVn4OCkWSlkPWULdhwkA6yby54GC/fqCoCYnPdlGDJbxR741K2fw6IbIWxu9+oSS+ZVIBZrq/VXgg==
+"@visactor/vgrammar-core@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-core/-/vgrammar-core-0.14.0.tgz#bc2ab8c09e8f189b44e20c626b0a02eccf8e624a"
+  integrity sha512-VZu/9cPkjrG6xVx4KeV5zJpEYKfqMR4vov3nIKqgXgIuKgqLcVSrsFsthoYu9qi8xCbPtgZSFI2yo0qiB9wN3g==
   dependencies:
-    "@visactor/vdataset" "~0.18.10"
-    "@visactor/vgrammar-coordinate" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vrender-components" "0.19.23"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vscale" "~0.18.10"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vdataset" "~0.18.14"
+    "@visactor/vgrammar-coordinate" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vrender-components" "0.20.0"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vscale" "~0.18.14"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vgrammar-hierarchy@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-hierarchy/-/vgrammar-hierarchy-0.13.19.tgz#6e97221dce3377a0a010e314546ec8e4b12e1457"
-  integrity sha512-KMsV2OMkFsF2xq7ORJB9ETIifFYfiALsdhTvVgX5G/VUUYkSR6l5ZWBCd0X/Fdyb+NaRn4gIgepkII+bwiOplA==
+"@visactor/vgrammar-hierarchy@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-hierarchy/-/vgrammar-hierarchy-0.14.0.tgz#484406b78fe19f9bb6c46c6b4fd52adcdd9bcba5"
+  integrity sha512-Tme/aCx3m+tKcUu5X5BJLqc654YzNXpCc29s6T97DEev1PCvyGeTf/lvBUirnfSBkgoCbrfDZVpK/zOAUtrC0g==
   dependencies:
-    "@visactor/vgrammar-core" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vgrammar-core" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vgrammar-projection@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-projection/-/vgrammar-projection-0.13.19.tgz#75c557f20b7b4469166dfba7b0f0cf3179423136"
-  integrity sha512-JXneUHRqBjMEiNACtiFX1cn0AVaYEEdFLQm+GJP58obsd7URDYjy79D0xknQJJ1N7e/d9lWJczDF1PWk34EvdQ==
+"@visactor/vgrammar-projection@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-projection/-/vgrammar-projection-0.14.0.tgz#3bd3d7dff504268c797914592839488db1bb4740"
+  integrity sha512-/Y1ffjMl1j8X7TXHrni9IBQJkL7q1yzVaFILhXUjY3NnYXWuDGJKEgK1BX3KbJhZzGLjDLeRVATvSYN1pzkO4A==
   dependencies:
-    "@visactor/vgrammar-core" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vgrammar-core" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vutils" "~0.18.14"
     d3-geo "^1.12.1"
 
-"@visactor/vgrammar-sankey@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-sankey/-/vgrammar-sankey-0.13.19.tgz#a5c909212a4aacf8f969d828e4862c80a8dada69"
-  integrity sha512-/dq3H8l59aXgzZFKJILyA5C2W4efND91JX10PxT6yGpuzKNH1OdrIuVZ646Pr2EhhtEKi5Zzb6l20zVfaoeEfw==
+"@visactor/vgrammar-sankey@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-sankey/-/vgrammar-sankey-0.14.0.tgz#b2f5f43f06e8ccd9824c9ca788d0697a74d9fb31"
+  integrity sha512-VVnmi7znTYnDQNAxW0stK14LSVFKSQe/flnavkVds91tgtT5+RBLE09Vqz9eH45n23nxHEfwrWA4sHiWfQ8mLg==
   dependencies:
-    "@visactor/vgrammar-core" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vgrammar-core" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vgrammar-util@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-util/-/vgrammar-util-0.13.19.tgz#f9953b897609ad069bae0e2f2201d61432e32dfd"
-  integrity sha512-X1APnlvbHggVDFOMkYVmOBAHnufqW/94MN9N1wpC8ojZshD1Gx13AuLk4b2qsokjTnGlCkLXZfu+0TrwIMPFNA==
+"@visactor/vgrammar-util@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-util/-/vgrammar-util-0.14.0.tgz#e5f3919cfc968818c7ba6a71e81c9994ea17af90"
+  integrity sha512-h838qgT6IFHYtugTf7sC+rRvz2aU/W0EEnXX/cEeyvMAkuBgdC0Jq6vmGYAbmm+hwbhUREC5QvxudwSEEKCelg==
   dependencies:
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vgrammar-venn@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-venn/-/vgrammar-venn-0.13.19.tgz#cfbed4ae9709ee388ff8cee62c00b36b9d38aa57"
-  integrity sha512-ifqZahsSyfH6+d5nlEL/WOO4nGoxohfw31WcxObW9eVXU5XtWx+sQn1nP8RAecrQUrABCh1XzbYqfcHhtx9FUw==
+"@visactor/vgrammar-venn@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-venn/-/vgrammar-venn-0.14.0.tgz#db556c3ae1b8ba7a24e0ee6ad6d21ac2f8d9fe9c"
+  integrity sha512-l8w802GiSs3oRhn9lvt5YERyQwvgaCHXlOMU26tQqssrR0u6tbdH0Q+crqL6jzLktwzVVfbVPRC3q1pBQU6geQ==
   dependencies:
-    "@visactor/vgrammar-core" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vgrammar-core" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vgrammar-wordcloud-shape@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-wordcloud-shape/-/vgrammar-wordcloud-shape-0.13.19.tgz#5fcd74e5ba429840eac33a5dcd581234bc020727"
-  integrity sha512-+7ySfiinG44HR7LfAqn3srCfe99SSjXsGBUhWv9cK/dlx5/xucfyi0BbXuzULGFPf+tklKzlxUOc2iJUZZPXPw==
+"@visactor/vgrammar-wordcloud-shape@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-wordcloud-shape/-/vgrammar-wordcloud-shape-0.14.0.tgz#9b25ea35de8203ec4fd7fb37c5fc7f40d7108df5"
+  integrity sha512-gDMTVaryB37uTZSXYpf0Zih894lHVJQRrPZYSiHvu5Jj9FZcisqBU+G8Q1Lo4WZJVhfWvCeuv9tYHtR9Gvuw3A==
   dependencies:
-    "@visactor/vgrammar-core" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vscale" "~0.18.10"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vgrammar-core" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vscale" "~0.18.14"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vgrammar-wordcloud@0.13.19":
-  version "0.13.19"
-  resolved "https://bnpm.byted.org/@visactor/vgrammar-wordcloud/-/vgrammar-wordcloud-0.13.19.tgz#8a24ba7cdfa1124336dc4f324340e730d7006a86"
-  integrity sha512-8UZYZEru5jdI5bkLoAlA/tTGYhiAJjTW7vrAkWqUn8U6wstrfhEbD8R7KXu74W9+qVF+hqQmvOR0z8eo+dfDCQ==
+"@visactor/vgrammar-wordcloud@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.npmjs.org/@visactor/vgrammar-wordcloud/-/vgrammar-wordcloud-0.14.0.tgz#ea0e25db9f7df6a8830e40b5ed0f184583a47dcd"
+  integrity sha512-NYzNS9vKuZJJUvqshxA88ScH7fB57tdO/wvtBYTDwRp249xqK/uzrAtaOgzNj4bJ5vwu//R+i5hYOjzdQABebw==
   dependencies:
-    "@visactor/vgrammar-core" "0.13.19"
-    "@visactor/vgrammar-util" "0.13.19"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vgrammar-core" "0.14.0"
+    "@visactor/vgrammar-util" "0.14.0"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vrender-components@0.19.23":
-  version "0.19.23"
-  resolved "https://bnpm.byted.org/@visactor/vrender-components/-/vrender-components-0.19.23.tgz#323d03ece289ff012598332a4f05a9f5ad9e3309"
-  integrity sha512-dft7yOeSwO2jd+qU4az2oCV7WG/hfSkWAuMtz+nIUUs67HZN0zRqNjbx+IoLvzo2F1beS3uTynB/rr6dh3goZw==
+"@visactor/vrender-components@0.20.0":
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/@visactor/vrender-components/-/vrender-components-0.20.0.tgz#eeeb5a1be69bc612f1f7204c61e8a749a4ffcd84"
+  integrity sha512-nZUtFF1Kg8xjDGGIVeBdAOjxWW+jibUV4ltF1G/Z4GaHYUzpYfifWVrPBpo4BFIjaeICaSit2nKvntXhEUzj2w==
   dependencies:
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vrender-kits" "0.19.23"
-    "@visactor/vscale" "~0.18.9"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vrender-kits" "0.20.0"
+    "@visactor/vscale" "~0.18.14"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vrender-core@0.19.23":
-  version "0.19.23"
-  resolved "https://bnpm.byted.org/@visactor/vrender-core/-/vrender-core-0.19.23.tgz#5d62b9039931916fab6bd6a6a74497b5f38a77ae"
-  integrity sha512-aRjSr5fARAupt9+B08zdfgyk7KXN89MCeN9EOk7AMYcj2p+/QYlFT0FTEMZScrriiluGISNgbFtUVqo3oGivJw==
+"@visactor/vrender-core@0.20.0":
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/@visactor/vrender-core/-/vrender-core-0.20.0.tgz#29db017946894b0af8047e64daccfb6664c2dd31"
+  integrity sha512-P6Ata06lmVlLu23usSFluILuyxhMydRIgPW5o0zzK/EASstirRdWEx4EghZmobg3XPoipzh0/8O8ddBBtzaflg==
   dependencies:
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vutils" "~0.18.14"
     color-convert "2.0.1"
 
-"@visactor/vrender-kits@0.19.23":
-  version "0.19.23"
-  resolved "https://bnpm.byted.org/@visactor/vrender-kits/-/vrender-kits-0.19.23.tgz#14c243762eb6653527065834f01d5afdfcfdc2fc"
-  integrity sha512-C8zyIaO4TgQ3dPnWtO1AA2K6/kAnMGgugP8Rnrqikvb8x4kVGw3zVP5PSZ9hP+ZdG9T35iyDt9uO8rl7u0OVWw==
+"@visactor/vrender-kits@0.20.0":
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/@visactor/vrender-kits/-/vrender-kits-0.20.0.tgz#f17c99ac92f122d3e76e33b84c0ff6e95c259b73"
+  integrity sha512-9r7XQdLoNfCtr+QQU0JpghDXQ7DOaa3CnvJmXrSn1gonkeDmUmTN9yDs8L2URdYEpXrThPUMJsVy/N3Tp3cqCA==
   dependencies:
     "@resvg/resvg-js" "2.4.1"
-    "@visactor/vrender-core" "0.19.23"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vrender-core" "0.20.0"
+    "@visactor/vutils" "~0.18.14"
     roughjs "4.5.2"
 
-"@visactor/vscale@~0.18.10", "@visactor/vscale@~0.18.9":
-  version "0.18.13"
-  resolved "https://bnpm.byted.org/@visactor/vscale/-/vscale-0.18.13.tgz#34506e55899b0c31b205e9948842a0218d1af768"
-  integrity sha512-wJKYIwLcMdI+jnoPkira5NZWzOFv4V+lmvURIMHOeEnvqVxz3A3IUI13a7wSliw8nqEwql3GtjAcis5jrwakJw==
+"@visactor/vscale@~0.18.14":
+  version "0.18.14"
+  resolved "https://registry.npmjs.org/@visactor/vscale/-/vscale-0.18.14.tgz#615adac8b41982499870cfa1698f3b3bf9f04c2c"
+  integrity sha512-uhyI8yqOPyMurdwqz1oqcqfTXZebpY5kYdnOM5xG79Lz54L95YNZ1J5BNu+SOxOBWbul5hnyjVpdTbZIoujveQ==
   dependencies:
-    "@visactor/vutils" "0.18.13"
+    "@visactor/vutils" "0.18.14"
 
-"@visactor/vutils-extension@1.11.11":
-  version "1.11.11"
-  resolved "https://bnpm.byted.org/@visactor/vutils-extension/-/vutils-extension-1.11.11.tgz#f84a418a5448e25e379de39d3138302932163f9a"
-  integrity sha512-DL3lIDq/6ahB35Qncj/Odwm3wkfTPMeycPeMfpD3wZ32A5kabH97f4dVM2m9QBEu4mk/+9EZJz7YzNlGzR3oLQ==
+"@visactor/vutils-extension@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.npmjs.org/@visactor/vutils-extension/-/vutils-extension-1.12.0.tgz#d28d62a410f882b00a17454204555754609deb24"
+  integrity sha512-PzTurfVcQ/e3WSFPYrBqAeCQYmeJuMZpu/cApHN4u0NWVPeFgICWyb/OUhf30HueqoL/mXQnKnPXibnz6oNr9w==
   dependencies:
-    "@visactor/vdataset" "~0.18.10"
-    "@visactor/vutils" "~0.18.10"
+    "@visactor/vdataset" "~0.18.14"
+    "@visactor/vutils" "~0.18.14"
 
-"@visactor/vutils@0.18.13", "@visactor/vutils@~0.18.10":
-  version "0.18.13"
-  resolved "https://bnpm.byted.org/@visactor/vutils/-/vutils-0.18.13.tgz#c6c7550fefcaa0aa058a690d7934f61f109737f4"
-  integrity sha512-dEguF4ZXuxUzkvOUBArTG/aqaYrYiOK0EUL4oCF9ZbVZmqvIiRUTa81a0CAM8xCdCWxJP0MUpyiXFEYH8cw48Q==
-  dependencies:
-    "@turf/helpers" "^6.5.0"
-    "@turf/invariant" "^6.5.0"
-    eventemitter3 "^4.0.7"
-
-"@visactor/vutils@0.18.14":
+"@visactor/vutils@0.18.14", "@visactor/vutils@~0.18.14":
   version "0.18.14"
   resolved "https://registry.npmjs.org/@visactor/vutils/-/vutils-0.18.14.tgz#6fd9ef75655566964657496d75c9c2d0a3755412"
   integrity sha512-Yf6v+utbMd7kK5F2UqZ3pw7xDpsvm24MQHzUzX3OUVFq+kAmYSPIc7j5YigShnn5se9uoghpNo62Vk0+we0W5Q==
@@ -1795,14 +1841,14 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-ansi-styles@^4.1.0:
+ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   version "4.3.0"
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz#edd803628ae71c04c85ae7a0906edad34b648937"
   integrity sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==
   dependencies:
     color-convert "^2.0.1"
 
-ansi-styles@^6.0.0, ansi-styles@^6.2.1:
+ansi-styles@^6.0.0, ansi-styles@^6.1.0, ansi-styles@^6.2.1:
   version "6.2.1"
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-6.2.1.tgz#0e62320cf99c21afff3b3012192546aacbfb05c5"
   integrity sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==
@@ -2008,6 +2054,11 @@ concat-stream@~1.4.1:
     readable-stream "~1.1.9"
     typedarray "~0.0.5"
 
+convert-source-map@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
+  integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
+
 core-js-compat@^3.37.1, core-js-compat@^3.38.0:
   version "3.38.0"
   resolved "https://registry.npmjs.org/core-js-compat/-/core-js-compat-3.38.0.tgz#d93393b1aa346b6ee683377b0c31172ccfe607aa"
@@ -2020,7 +2071,7 @@ core-util-is@~1.0.0:
   resolved "https://bnpm.byted.org/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
 
-cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+cross-spawn@^7.0.0, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
@@ -2060,7 +2111,7 @@ d3-hierarchy@^3.1.1:
   resolved "https://bnpm.byted.org/d3-hierarchy/-/d3-hierarchy-3.1.2.tgz#b01cd42c1eed3d46db77a5966cf726f8c09160c6"
   integrity sha512-FX/9frcub54beBdugHjDCdikxThEqjnR93Qt7PvQTOHxyiNCAlvMrHhclk3cD5VeAaq9fxmfRp+CnWw9rEMBuA==
 
-debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@~4.3.4:
+debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@~4.3.4:
   version "4.3.6"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.6.tgz#2ab2c38fbaffebf8aa95fdfe6d88438c7a13c52b"
   integrity sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==
@@ -2086,6 +2137,11 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+eastasianwidth@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
+  integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
+
 electron-to-chromium@^1.5.4:
   version "1.5.11"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.11.tgz#258077f1077a1c72f2925cd5b326c470a7f5adef"
@@ -2095,6 +2151,16 @@ emoji-regex@^10.3.0:
   version "10.3.0"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-10.3.0.tgz#76998b9268409eb3dae3de989254d456e70cfe23"
   integrity sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==
+
+emoji-regex@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
+  integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
+
+emoji-regex@^9.2.2:
+  version "9.2.2"
+  resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz#840c8803b0d8047f4ff0cf963176b32d4ef3ed72"
+  integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
 
 environment@^1.0.0:
   version "1.1.0"
@@ -2356,6 +2422,14 @@ flatted@^3.2.9:
   resolved "https://registry.npmjs.org/flatted/-/flatted-3.3.1.tgz#21db470729a6734d4997002f439cb308987f567a"
   integrity sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==
 
+foreground-child@^3.1.0:
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/foreground-child/-/foreground-child-3.3.0.tgz#0ac8644c06e431439f8561db8ecf29a7b5519c77"
+  integrity sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==
+  dependencies:
+    cross-spawn "^7.0.0"
+    signal-exit "^4.0.1"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -2370,6 +2444,11 @@ function-bind@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz#2c02d864d97f3ea6c8830c464cbd11ab6eab7a1c"
   integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
+
+gensync@^1.0.0-beta.2:
+  version "1.0.0-beta.2"
+  resolved "https://registry.npmjs.org/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
+  integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
 geobuf@^3.0.1:
   version "3.0.2"
@@ -2432,6 +2511,18 @@ glob-parent@^6.0.2:
   integrity sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==
   dependencies:
     is-glob "^4.0.3"
+
+glob@^10.4.1:
+  version "10.4.5"
+  resolved "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
+  integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
+  dependencies:
+    foreground-child "^3.1.0"
+    jackspeak "^3.1.2"
+    minimatch "^9.0.4"
+    minipass "^7.1.2"
+    package-json-from-dist "^1.0.0"
+    path-scurry "^1.11.1"
 
 glob@^7.1.2, glob@^7.1.3:
   version "7.2.3"
@@ -2551,6 +2642,11 @@ is-extglob@^2.1.1:
   resolved "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz#a88c02535791f02ed37c76a1b9ea9773c833f8c2"
   integrity sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==
 
+is-fullwidth-code-point@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz#f116f8064fe90b3f7844a38997c0b75051269f1d"
+  integrity sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==
+
 is-fullwidth-code-point@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-4.0.0.tgz#fae3167c729e7463f8461ce512b080a49268aa88"
@@ -2607,6 +2703,15 @@ isexe@^2.0.0:
   resolved "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+jackspeak@^3.1.2:
+  version "3.4.3"
+  resolved "https://registry.npmjs.org/jackspeak/-/jackspeak-3.4.3.tgz#8833a9d89ab4acde6188942bd1c53b6390ed5a8a"
+  integrity sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==
+  dependencies:
+    "@isaacs/cliui" "^8.0.2"
+  optionalDependencies:
+    "@pkgjs/parseargs" "^0.11.0"
+
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -2643,6 +2748,11 @@ json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
+
+json5@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
+  integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
 keyv@^4.5.3:
   version "4.5.4"
@@ -2720,6 +2830,11 @@ log-update@^6.1.0:
     strip-ansi "^7.1.0"
     wrap-ansi "^9.0.0"
 
+lru-cache@^10.2.0:
+  version "10.4.3"
+  resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
+  integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
+
 lru-cache@^5.1.1:
   version "5.1.1"
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-5.1.1.tgz#1da27e6710271947695daf6848e847f01d84b920"
@@ -2785,6 +2900,11 @@ minimist@1.2.6:
   version "1.2.6"
   resolved "https://bnpm.byted.org/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
+
+"minipass@^5.0.0 || ^6.0.2 || ^7.0.0", minipass@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.npmjs.org/minipass/-/minipass-7.1.2.tgz#93a9626ce5e5e66bd4db86849e7515e92340a707"
+  integrity sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==
 
 ms@2.1.2:
   version "2.1.2"
@@ -2860,6 +2980,11 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
+package-json-from-dist@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/package-json-from-dist/-/package-json-from-dist-1.0.0.tgz#e501cd3094b278495eb4258d4c9f6d5ac3019f00"
+  integrity sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==
+
 parent-module@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/parent-module/-/parent-module-1.0.1.tgz#691d2709e78c79fae3a156622452d00762caaaa2"
@@ -2906,6 +3031,14 @@ path-parse@^1.0.7:
   version "1.0.7"
   resolved "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
   integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
+
+path-scurry@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.npmjs.org/path-scurry/-/path-scurry-1.11.1.tgz#7960a668888594a0720b12a911d1a742ab9f11d2"
+  integrity sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==
+  dependencies:
+    lru-cache "^10.2.0"
+    minipass "^5.0.0 || ^6.0.2 || ^7.0.0"
 
 path-source@0.1:
   version "0.1.3"
@@ -3201,7 +3334,7 @@ shebang-regex@^3.0.0:
   resolved "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-signal-exit@^4.1.0:
+signal-exit@^4.0.1, signal-exit@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz#952188c1cbd546070e2dd20d0f41c0ae0530cb04"
   integrity sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==
@@ -3271,6 +3404,25 @@ string-argv@~0.3.2:
   resolved "https://registry.npmjs.org/string-argv/-/string-argv-0.3.2.tgz#2b6d0ef24b656274d957d54e0a4bbf6153dc02b6"
   integrity sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==
 
+"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
+  version "4.2.3"
+  resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
+  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
+  dependencies:
+    emoji-regex "^8.0.0"
+    is-fullwidth-code-point "^3.0.0"
+    strip-ansi "^6.0.1"
+
+string-width@^5.0.1, string-width@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.npmjs.org/string-width/-/string-width-5.1.2.tgz#14f8daec6d81e7221d2a357e668cab73bdbca794"
+  integrity sha512-HnLOCR3vjcY8beoNLtcjZ5/nxn2afmME6lhrDrebokqMap+XbeW8n9TXpPDOqdGK5qcI3oT0GKTW6wC7EMiVqA==
+  dependencies:
+    eastasianwidth "^0.2.0"
+    emoji-regex "^9.2.2"
+    strip-ansi "^7.0.1"
+
 string-width@^7.0.0:
   version "7.2.0"
   resolved "https://registry.npmjs.org/string-width/-/string-width-7.2.0.tgz#b5bb8e2165ce275d4d43476dd2700ad9091db6dc"
@@ -3292,14 +3444,15 @@ string_decoder@~0.10.x:
   resolved "https://bnpm.byted.org/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
   integrity sha512-ev2QzSzWPYmy9GuqfIVildA4OdcGLeFZQrq5ys6RtiuF+RQQiZWr8TZNyAcuVXyQRYfEO+MsoB/1BuQVhOJuoQ==
 
-strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
   dependencies:
     ansi-regex "^5.0.1"
 
-strip-ansi@^7.1.0:
+strip-ansi@^7.0.1, strip-ansi@^7.1.0:
   version "7.1.0"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz#d5b6568ca689d8561370b0707685d22434faff45"
   integrity sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==
@@ -3375,6 +3528,11 @@ ts-api-utils@^1.3.0:
   version "1.3.0"
   resolved "https://registry.npmjs.org/ts-api-utils/-/ts-api-utils-1.3.0.tgz#4b490e27129f1e8e686b45cc4ab63714dc60eea1"
   integrity sha512-UQMIo7pb8WRomKR1/+MFVLTroIvDVtMX3K6OUir8ynLyzB8Jeriont2bTAtmNPa1ekAgN7YPDyf6V+ygrdU+eQ==
+
+tslib@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.3.tgz#0438f810ad7a9edcde7a241c3d80db693c8cbfe0"
+  integrity sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
@@ -3473,6 +3631,24 @@ word-wrap@^1.2.5:
   version "1.2.5"
   resolved "https://registry.npmjs.org/word-wrap/-/word-wrap-1.2.5.tgz#d2c45c6dd4fbce621a66f136cbe328afd0410b34"
   integrity sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==
+
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
+  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
+  dependencies:
+    ansi-styles "^4.0.0"
+    string-width "^4.1.0"
+    strip-ansi "^6.0.0"
+
+wrap-ansi@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-8.1.0.tgz#56dc22368ee570face1b49819975d9b9a5ead214"
+  integrity sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==
+  dependencies:
+    ansi-styles "^6.1.0"
+    string-width "^5.0.1"
+    strip-ansi "^7.0.1"
 
 wrap-ansi@^9.0.0:
   version "9.0.0"
