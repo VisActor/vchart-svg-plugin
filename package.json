@@ -1,8 +1,7 @@
 {
   "name": "@visactor/vchart-svg-plugin",
   "private": false,
-  "version": "0.0.1",
-  "type": "module",
+  "version": "0.0.2",
   "scripts": {
     "dev": "cd ./demo && vite",
     "build": "rollup -c",
