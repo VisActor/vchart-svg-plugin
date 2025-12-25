@@ -119,7 +119,7 @@ export function generateGradient(style: any, graphic: any): string {
   return ["fill", "stroke"]
     .map((key: string) => {
       const value = style[key];
-      if (typeof value === "object" && value.gradient) {
+      if (!isNil(value) && typeof value === "object" && value.gradient) {
         const gradient = value;
         const stops = gradient.stops || [];
         const stopStr = stops
