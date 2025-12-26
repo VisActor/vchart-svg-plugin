@@ -281,7 +281,7 @@ Examples:
     this.log('info', `Dry run: ${this.options.dryRun}`);
 
     const answer = this.askQuestion('Continue with release? (y/N): ');
-    if (!answer.toLowerCase().startsWith('y')) {
+    if (answer && !answer.toLowerCase().startsWith('y')) {
       throw new Error('Release cancelled by user');
     }
   }
