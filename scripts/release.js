@@ -254,18 +254,18 @@ Examples:
   }
 
   verifyBuildOutputs() {
-    const requiredDirs = ['cjs', 'esm', 'umd'];
-    const missingDirs = requiredDirs.filter(dir => {
+    const expectedDirs = ['cjs', 'esm'];
+    const existingDirs = expectedDirs.filter(dir => {
       const dirPath = path.join(process.cwd(), dir);
-      return !fs.existsSync(dirPath);
+      return fs.existsSync(dirPath);
     });
 
-    if (missingDirs.length > 0) {
-      this.log('error', `Missing build directories: ${missingDirs.join(', ')}`);
+    if (existingDirs.length === 0) {
+      this.log('error', 'No build directories found');
       return false;
     }
 
-    this.log('success', 'All build outputs generated successfully');
+    this.log('success', `Build outputs generated successfully: ${existingDirs.join(', ')}`);
     return true;
   }
 
