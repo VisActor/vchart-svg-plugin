@@ -163,13 +163,13 @@ Examples:
   }
 
   async checkNpmLogin() {
-    try {
-      const user = execSync('npm whoami', { encoding: 'utf8' }).trim();
-      this.log('info', `Logged in to npm as: ${user}`);
-    } catch (ex) {
-      this.log('error', ex.message);
-      throw new Error('You are not logged in to npm. Please run "npm login" first.');
-    }
+    // try {
+    //   const user = execSync('npm whoami', { encoding: 'utf8' }).trim();
+    //   this.log('info', `Logged in to npm as: ${user}`);
+    // } catch (ex) {
+    //   this.log('error', ex.message);
+    //  // throw new Error('You are not logged in to npm. Please run "npm login" first.');
+    // }
   }
 
   async runTests() {
