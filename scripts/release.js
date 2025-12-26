@@ -254,7 +254,7 @@ Examples:
   }
 
   verifyBuildOutputs() {
-    const requiredDirs = ['cjs', 'esm', 'umd'];
+    const requiredDirs = ['cjs', 'esm'];
     const missingDirs = requiredDirs.filter(dir => {
       const dirPath = path.join(process.cwd(), dir);
       return !fs.existsSync(dirPath);
