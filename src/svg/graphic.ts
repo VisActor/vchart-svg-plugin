@@ -89,7 +89,7 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
   }
 
   if (group.type === "path") {
-    let customPath = group.toCustomPath().toString();
+    const customPath = group.toCustomPath().toString();
 
     return generateSvgNode(
       group,
@@ -170,7 +170,7 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
       group
     );
 
-    let strokeStyle: any = {};
+    const strokeStyle: any = {};
     let strokePath = "";
 
     if (strokePaths) {

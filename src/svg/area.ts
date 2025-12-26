@@ -14,7 +14,7 @@ export function convertAreaStyle(
   graphic: any
 ): Record<string, any> {
   const style: Record<string, any> = {};
-  let cacheArea =
+  const cacheArea =
     graphic.cacheArea instanceof Array
       ? graphic.cacheArea
       : graphic.cacheArea

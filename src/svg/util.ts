@@ -561,7 +561,7 @@ export function parseCornerRadiusPath(
     const circlePoint = getProportionPoint(angularPoint, d, L, dx, dy);
 
     //StartAngle and EndAngle of arc
-    let startAngle = Math.atan2(
+    const startAngle = Math.atan2(
       p1Cross.y - circlePoint.y,
       p1Cross.x - circlePoint.x
     );

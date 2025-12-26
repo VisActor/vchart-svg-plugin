@@ -66,10 +66,10 @@ export function calculateArcCornerRadius(
   const yire = innerRadius * Math.sin(innerEndAngle);
 
   // Apply rounded corners?
-  let xore = outerRadius * Math.cos(outerEndAngle);
-  let yore = outerRadius * Math.sin(outerEndAngle);
-  let xirs = innerRadius * Math.cos(innerStartAngle);
-  let yirs = innerRadius * Math.sin(innerStartAngle);
+  const xore = outerRadius * Math.cos(outerEndAngle);
+  const yore = outerRadius * Math.sin(outerEndAngle);
+  const xirs = innerRadius * Math.cos(innerStartAngle);
+  const yirs = innerRadius * Math.sin(innerStartAngle);
   if (maxInnerCornerRadius > EPS || maxOuterCornerRadius > EPS) {
     // Restrict the corner radius according to the sector angle.
     if (deltaAngle < Math.PI) {
@@ -173,8 +173,8 @@ export function convertArcStyle(
     let x = cx + outerRadius * Math.cos(startAngle);
     let y = cy + outerRadius * Math.sin(startAngle);
     const half = clockwise ? startAngle + Math.PI : startAngle - Math.PI;
-    let x1 = cx + outerRadius * Math.cos(half);
-    let y1 = cy + outerRadius * Math.sin(half);
+    const x1 = cx + outerRadius * Math.cos(half);
+    const y1 = cy + outerRadius * Math.sin(half);
     path += `M${x},${y}`;
     path += `A${outerRadius},${outerRadius},0,1,${+clockwise},${x1},${y1}A${outerRadius},${outerRadius},0,1,${+clockwise},${x},${y}`;
 
@@ -182,8 +182,8 @@ export function convertArcStyle(
       x = cx + innerRadius * Math.cos(endAngle);
       y = cy + innerRadius * Math.sin(endAngle);
       const half = clockwise ? endAngle + Math.PI : endAngle - Math.PI;
-      let x1 = cx + innerRadius * Math.cos(half);
-      let y1 = cy + innerRadius * Math.sin(half);
+      const x1 = cx + innerRadius * Math.cos(half);
+      const y1 = cy + innerRadius * Math.sin(half);
 
       path += `L${x},${y}`;
       path += `A${innerRadius},${innerRadius},0,1,${+!clockwise},${x1},${y1}A${innerRadius},${innerRadius},0,1,${+!clockwise},${x},${y}`;
