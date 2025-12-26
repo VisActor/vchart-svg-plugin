@@ -254,7 +254,7 @@ Examples:
   }
 
   verifyBuildOutputs() {
-    const requiredDirs = ['cjs', 'esm'];
+    const requiredDirs = ['cjs', 'esm', 'umd'];
     const missingDirs = requiredDirs.filter(dir => {
       const dirPath = path.join(process.cwd(), dir);
       return !fs.existsSync(dirPath);
@@ -287,6 +287,12 @@ Examples:
   }
 
   askQuestion(question) {
+    // Check if we're in an interactive environment
+    if (!process.stdin.isTTY) {
+      this.log('warning', 'Running in non-interactive mode, defaulting to yes');
+      return 'y';
+    }
+
     const readline = require('readline');
     const rl = readline.createInterface({
       input: process.stdin,
@@ -296,7 +302,7 @@ Examples:
     return new Promise((resolve) => {
       rl.question(question, (answer) => {
         rl.close();
-        resolve(answer || '');
+        resolve(String(answer || '').trim());
       });
     });
   }
