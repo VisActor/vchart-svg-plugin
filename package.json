@@ -1,11 +1,22 @@
 {
   "name": "@visactor/vchart-svg-plugin",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "cd ./demo && vite",
     "build": "rollup -c",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "build:watch": "rollup -c --watch",
+    "clean": "rm -rf cjs esm umd *.tgz",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "test": "echo \"No tests specified\"",
+    "prepublishOnly": "yarn build",
+    "release": "node scripts/release.js",
+    "release:patch": "node scripts/release.js patch",
+    "release:minor": "node scripts/release.js minor",
+    "release:major": "node scripts/release.js major",
+    "release:dry-run": "node scripts/release.js --dry-run",
+    "version": "node scripts/version.js"
   },
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -16,30 +27,31 @@
     "umd/"
   ],
   "peerDependencies": {
-    "@visactor/vutils": ">=0.18.0",
-    "@visactor/vrender-core": ">=0.18.0"
+    "@visactor/vrender-core": ">=0.18.0",
+    "@visactor/vutils": ">=0.18.0"
   },
   "devDependencies": {
-    "@visactor/vutils": "0.18.14",
-    "@visactor/vrender-core": "0.20.0",
-    "@visactor/vchart": "1.12.0",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.0",
-    "glob": "^10.4.1",
     "@babel/core": "^7.25.2",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@rollup/plugin-commonjs": "^11.0.1",
-    "@rollup/plugin-node-resolve": "^7.0.0",
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "rollup": "^1.29.0",
-    "eslint": "^8.57.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "@visactor/vchart": "1.12.0",
+    "@visactor/vrender-core": "0.20.0",
+    "@visactor/vutils": "0.18.14",
+    "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "glob": "^10.4.1",
     "lint-staged": "15.2.7",
-    "tslib": "^2.6.3"
+    "rollup": "^1.29.0",
+    "semver": "^7.7.3",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0"
   }
 }
