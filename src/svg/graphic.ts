@@ -121,7 +121,7 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
     return `${generateDefs(defs)}<g ${convertStyleToString({
       ...commonStyle,
       ...convertTransformStyle(attribute, group),
-      ...convertTextStyle(attribute, group),
+      ...convertTextStyle(attribute),
       class: group.name,
     })}>${convertTextContent(attribute, group)}</g>`;
   }
@@ -130,7 +130,7 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
     return `${generateDefs(defs)}<g ${convertStyleToString({
       ...commonStyle,
       ...convertTransformStyle(attribute, group),
-      ...convertTextStyle(attribute, group),
+      ...convertTextStyle(attribute),
       class: group.name,
     })}>${convertRichTextContent(attribute, group)}</g>`;
   }
@@ -253,7 +253,7 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
   }
 
   if (group.type === "rect") {
-    const { roundedPath, ...sizeAttrs } = convertRectStyle(attribute, group);
+    const { roundedPath, ...sizeAttrs } = convertRectStyle(attribute);
 
     if (roundedPath) {
       return generateSvgNode(
@@ -281,7 +281,7 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
   }
 
   if (group.type === "image") {
-    const { roundedPath, ...sizeAttrs } = convertRectStyle(attribute, group);
+    const { ...sizeAttrs } = convertRectStyle(attribute);
     return generateSvgNode(
       group,
       "image",

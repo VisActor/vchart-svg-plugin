@@ -144,7 +144,7 @@ export function generateGradient(style: any, graphic: any): string {
             r0 = 0,
             x1 = 0.5,
             y1 = 0.5,
-            r1 = 0.5,
+           // r1 = 0.5,
           } = gradient;
 
           return `<radialGradient cx="${x0}" cy="${y0}" r="${r0}" fx="${x1}" fy="${y1}" id="${generateGradientKey(
@@ -295,7 +295,7 @@ export function convertTextContent(attribute: any = {}, graphic: any): string {
     const lines = layoutData.lines;
 
     if (lines && lines.length) {
-      return lines.reduce((res: string, line: any, index: number) => {
+      return lines.reduce((res: string, line: any) => {
         return `${res}<text dy="${line.topOffset}" dx="${line.leftOffset}">${line.str}</text>`;
       }, "");
     }
@@ -327,7 +327,7 @@ export function convertRichTextContent(
           res = `${res}<text ${convertStyleToString({
             ...convertCommonStyle(pAttrs, graphic),
             // ...convertTransformStyle(p),
-            ...convertTextStyle(pAttrs, graphic),
+            ...convertTextStyle(pAttrs),
           })} dy="${line.top + line.baseline}" dx="${line.left}">${
             p.text
           }</text>`;
@@ -346,8 +346,7 @@ export function convertRichTextContent(
 }
 
 export function convertTextStyle(
-  attribute: any = {},
-  graphic: any
+  attribute: any = {}
 ): Record<string, any> {
   const keys = [
     "textAlign",
@@ -417,7 +416,7 @@ export const parsePathFromCurves = (curves: any[]) => {
   let prevPoint: { x: number; y: number };
   let prevCommand = "";
 
-  curves.forEach((curve: any, index: number) => {
+  curves.forEach((curve: any) => {
     const p0 = curve.p0;
     const p1 = curve.p1;
 

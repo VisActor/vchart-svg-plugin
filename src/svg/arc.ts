@@ -130,7 +130,7 @@ export function calculateArcCornerRadius(
 
 export function convertArcStyle(
   attribute: any = {},
-  arc: any
+  arc: IArc
 ): Record<string, any> {
   const style: Record<string, any> = {};
   let path: string = "";
