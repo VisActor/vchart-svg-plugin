@@ -2,6 +2,14 @@
   "name": "@visactor/vchart-svg-plugin",
   "private": false,
   "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/visactor/vchart-svg-plugin.git"
+  },
+  "homepage": "https://www.visactor.io/vchart/guide/tutorial_docs/Cross-terminal_and_Developer_Ecology/svg",
+  "bugs": {
+    "url": "https://github.com/visactor/vchart-svg-plugin/issues"
+  },
   "scripts": {
     "dev": "cd ./demo && vite",
     "build": "rollup -c",
