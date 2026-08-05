@@ -118,19 +118,27 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
   }
 
   if (group.type === "text") {
+    // Canvas calls strokeText before fillText (stroke below, fill above, forming a text
+    // halo/outline; see vrender text-render). SVG defaults to the opposite (fill then
+    // stroke), so the stroke covers the fill and white text with a light stroke becomes
+    // nearly invisible. paint-order:stroke puts the stroke below the fill, matching canvas.
     return `${generateDefs(defs)}<g ${convertStyleToString({
       ...commonStyle,
       ...convertTransformStyle(attribute, group),
       ...convertTextStyle(attribute),
+      "paint-order": "stroke",
       class: group.name,
     })}>${convertTextContent(attribute, group)}</g>`;
   }
 
   if (group.type === "richtext") {
+    // Same as above: render the stroke below the fill so white labels (e.g. funnel labels)
+    // are not obscured by a light-colored stroke.
     return `${generateDefs(defs)}<g ${convertStyleToString({
       ...commonStyle,
       ...convertTransformStyle(attribute, group),
       ...convertTextStyle(attribute),
+      "paint-order": "stroke",
       class: group.name,
     })}>${convertRichTextContent(attribute, group)}</g>`;
   }
