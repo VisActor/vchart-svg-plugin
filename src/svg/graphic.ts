@@ -11,6 +11,7 @@ import {
   scientificToDecimal,
   convertTextStyle,
   convertTextContent,
+  convertTextBackground,
   convertRichTextContent,
   generateGradient,
   generateDefs,
@@ -122,7 +123,13 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
     // halo/outline; see vrender text-render). SVG defaults to the opposite (fill then
     // stroke), so the stroke covers the fill and white text with a light stroke becomes
     // nearly invisible. paint-order:stroke puts the stroke below the fill, matching canvas.
-    return `${generateDefs(defs)}<g ${convertStyleToString({
+    // The label background (if any) is emitted first, as a sibling in parent space (its
+    // rect comes from the graphic's AABBBounds, which is already in parent space), so it
+    // sits behind the text — matching the canvas order (background before fill/stroke).
+    return `${generateDefs(defs)}${convertTextBackground(
+      attribute,
+      group
+    )}<g ${convertStyleToString({
       ...commonStyle,
       ...convertTransformStyle(attribute, group),
       ...convertTextStyle(attribute),
@@ -133,8 +140,11 @@ export const parseSimpleGraphic = (attribute: any, group: any) => {
 
   if (group.type === "richtext") {
     // Same as above: render the stroke below the fill so white labels (e.g. funnel labels)
-    // are not obscured by a light-colored stroke.
-    return `${generateDefs(defs)}<g ${convertStyleToString({
+    // are not obscured by a light-colored stroke, and draw the background behind the text.
+    return `${generateDefs(defs)}${convertTextBackground(
+      attribute,
+      group
+    )}<g ${convertStyleToString({
       ...commonStyle,
       ...convertTransformStyle(attribute, group),
       ...convertTextStyle(attribute),

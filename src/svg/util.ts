@@ -460,6 +460,98 @@ export function convertTextStyle(
   return res;
 }
 
+// Canvas draws a text/richtext label background (see vrender's text-contribution-render:
+// DefaultTextBackgroundRenderContribution) as a rounded rect derived from the graphic's
+// bounds, filled before the text. The SVG converter previously dropped the `background`
+// attribute entirely, so labels that rely on it (e.g. funnel labels with a semi-transparent
+// block) exported without their background. Replicate the canvas rect here.
+//
+// The rect is read from the real graphic's AABBBounds (parent space) — the same object the
+// canvas onlyTranslate branch uses — rather than recomputing bounds via vrender's global
+// graphic registry, which is not reliably initialized inside this bundle. It is therefore
+// emitted as a sibling of the text <g> (parent space), not inside it. This is exact for
+// translate-only labels (funnel/pie/bar labels); a rotated/scaled label would get an
+// axis-aligned background instead of a rotated one, which is still far better than none.
+//
+// Only solid-color backgrounds are handled — an object/image `background` (used for
+// background images) is out of scope and left to the text content as before.
+export function convertTextBackground(attribute: any = {}, graphic: any): string {
+  const { background } = attribute;
+
+  if (isNil(background) || typeof background !== "string") {
+    return "";
+  }
+
+  const bounds = graphic && graphic.AABBBounds;
+  if (
+    !bounds ||
+    typeof bounds.width !== "function" ||
+    typeof bounds.height !== "function"
+  ) {
+    return "";
+  }
+
+  const x = bounds.x1;
+  const y = bounds.y1;
+  const width = bounds.width();
+  const height = bounds.height();
+
+  if (!(width > 0) || !(height > 0)) {
+    return "";
+  }
+
+  // backgroundOpacity defaults to fillOpacity (canvas parity).
+  const backgroundOpacity = attribute.backgroundOpacity ?? attribute.fillOpacity;
+  const { backgroundCornerRadius } = attribute;
+
+  const style: Record<string, any> = {
+    fill: background,
+    stroke: "none",
+    "pointer-events": "none",
+  };
+  if (!isNil(backgroundOpacity)) {
+    style["fill-opacity"] = backgroundOpacity;
+  }
+
+  // Corner radius: uniform (number, or array of equal values) -> rx/ry; per-corner array -> path.
+  // Mirrors convertRectStyle so background rounding matches how the plugin renders rects.
+  const isUniform =
+    backgroundCornerRadius === +backgroundCornerRadius ||
+    (Array.isArray(backgroundCornerRadius) &&
+      backgroundCornerRadius.every((entry) => entry === backgroundCornerRadius[0]));
+
+  if (Array.isArray(backgroundCornerRadius) && !isUniform) {
+    const roundedPath = parseCornerRadiusPath(
+      [
+        { x, y },
+        { x: x + width, y },
+        { x: x + width, y: y + height },
+        { x, y: y + height },
+      ],
+      backgroundCornerRadius,
+      true
+    );
+    return `<path ${convertStyleToString({ ...style, d: roundedPath })} />`;
+  }
+
+  const radius = Array.isArray(backgroundCornerRadius)
+    ? backgroundCornerRadius[0]
+    : backgroundCornerRadius;
+  if (radius) {
+    const r = Math.min(radius, width / 2, height / 2);
+    style.rx = r;
+    style.ry = r;
+  }
+
+  return `<rect ${convertStyleToString({
+    ...style,
+    x,
+    y,
+    width,
+    height,
+  })} />`;
+}
+
 export function convertStyleToString(style: Record<string, any>) {
   return Object.keys(style).reduce((res: string, key: string) => {
     if (isNil(style[key])) {
