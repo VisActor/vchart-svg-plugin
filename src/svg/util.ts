@@ -295,8 +295,21 @@ export function convertTextContent(attribute: any = {}, graphic: any): string {
     const lines = layoutData.lines;
 
     if (lines && lines.length) {
+      // Canvas positions each line at (leftOffset + bbox.xOffset, topOffset + bbox.yOffset),
+      // where bbox.xOffset/yOffset come from textAlign/textBaseline. The previous
+      // implementation only used the per-line leftOffset/topOffset and dropped the
+      // bbox-level offset, relying instead on alignment-baseline on the wrapping <g>.
+      // But alignment-baseline is not inherited and has no effect on <text>, so labels
+      // ended up vertically misaligned. Bake both offsets into the coordinates and pin
+      // text-anchor=start / alphabetic baseline to match the canvas renderer.
+      const bbox = layoutData.bbox || {};
+      const bboxXOffset = bbox.xOffset || 0;
+      const bboxYOffset = bbox.yOffset || 0;
+
       return lines.reduce((res: string, line: any) => {
-        return `${res}<text dy="${line.topOffset}" dx="${line.leftOffset}">${line.str}</text>`;
+        return `${res}<text text-anchor="start" dominant-baseline="alphabetic" dy="${
+          line.topOffset + bboxYOffset
+        }" dx="${line.leftOffset + bboxXOffset}">${line.str}</text>`;
       }, "");
     }
   }
@@ -318,19 +331,86 @@ export function convertRichTextContent(
     const lines = frameCache.lines;
 
     if (lines && lines.length) {
+      // Canvas renders richtext (see vrender Frame.draw) by translating the whole text
+      // block by deltaX/deltaY derived from globalAlign/globalBaseline so it is centered
+      // (or right/bottom aligned) relative to the anchor. The previous implementation only
+      // used the per-line line.left / line.top+baseline and dropped this block-level offset,
+      // while relying on the non-inherited alignment-baseline of the wrapping <g>. As a
+      // result labels (e.g. text at the end of pie leader lines) were shifted down. Replicate
+      // Frame.draw's deltaX/deltaY here and bake them into the coordinates.
+      const globalAlign = frameCache.globalAlign;
+      const globalBaseline = frameCache.globalBaseline;
+
+      let actualWidth = 0;
+      let actualHeight = 0;
+      if (typeof frameCache.getActualSize === "function") {
+        const actualSize = frameCache.getActualSize();
+        actualWidth = actualSize.width || 0;
+        actualHeight = actualSize.height || 0;
+      }
+
+      const contentWidth = frameCache.width || actualWidth || 0;
+      let contentHeight = frameCache.height || actualHeight || 0;
+      contentHeight = Math.min(contentHeight, actualHeight || contentHeight);
+
+      let deltaX = 0;
+      if (globalAlign === "right" || globalAlign === "end") {
+        deltaX = -contentWidth;
+      } else if (globalAlign === "center") {
+        deltaX = -contentWidth / 2;
+      }
+
+      let deltaY = 0;
+      if (globalBaseline === "middle") {
+        deltaY = -contentHeight / 2;
+      } else if (globalBaseline === "bottom") {
+        deltaY = -contentHeight;
+      }
+
+      // Map the canvas textBaseline to the SVG dominant-baseline. When drawing, canvas
+      // computes the baseline y from paragraph.textBaseline (for "middle" ascent=height/2,
+      // i.e. the baseline y sits at the glyph's vertical center). The SVG side must use the
+      // matching dominant-baseline, otherwise a hardcoded alphabetic makes "middle" text sit
+      // on the alphabetic baseline and appear shifted up by roughly (ascent - descent).
+      const toDominantBaseline = (textBaseline: string): string => {
+        if (textBaseline === "middle") {
+          return "central";
+        }
+        if (textBaseline === "top" || textBaseline === "hanging") {
+          return "text-before-edge";
+        }
+        if (textBaseline === "bottom") {
+          return "text-after-edge";
+        }
+        return "alphabetic";
+      };
+
       return lines.reduce((res: string, line: any) => {
         const paragraphs = line.paragraphs;
 
         paragraphs.forEach((p: any) => {
           const pAttrs = { ...line, ...p, ...p.character };
 
-          res = `${res}<text ${convertStyleToString({
+          const style: Record<string, any> = {
             ...convertCommonStyle(pAttrs, graphic),
             // ...convertTransformStyle(p),
             ...convertTextStyle(pAttrs),
-          })} dy="${line.top + line.baseline}" dx="${line.left}">${
-            p.text
-          }</text>`;
+          };
+          // Block-level offset is baked into the coordinates; pin text-anchor=start and map
+          // the baseline from the paragraph's actual textBaseline to match the canvas.
+          style["text-anchor"] = "start";
+          delete style["alignment-baseline"];
+          style["dominant-baseline"] = toDominantBaseline(
+            p.textBaseline || (p.character && p.character.textBaseline)
+          );
+
+          // Canvas draws each line baseline at line.top + line.ascent = line.baseline (see the
+          // Line constructor: top = baseline - ascent). The previous code used
+          // line.top + line.baseline, adding an extra line.top (~lineHeight) from the second
+          // line onward, which stretched the spacing of multi-line labels (e.g. name + value).
+          res = `${res}<text ${convertStyleToString(style)} dy="${
+            line.baseline + deltaY
+          }" dx="${line.left + deltaX}">${p.text}</text>`;
         });
 
         return res;
@@ -378,6 +458,98 @@ export function convertTextStyle(
   }
 
   return res;
+}
+
+// Canvas draws a text/richtext label background (see vrender's text-contribution-render:
+// DefaultTextBackgroundRenderContribution) as a rounded rect derived from the graphic's
+// bounds, filled before the text. The SVG converter previously dropped the `background`
+// attribute entirely, so labels that rely on it (e.g. funnel labels with a semi-transparent
+// block) exported without their background. Replicate the canvas rect here.
+//
+// The rect is read from the real graphic's AABBBounds (parent space) — the same object the
+// canvas onlyTranslate branch uses — rather than recomputing bounds via vrender's global
+// graphic registry, which is not reliably initialized inside this bundle. It is therefore
+// emitted as a sibling of the text <g> (parent space), not inside it. This is exact for
+// translate-only labels (funnel/pie/bar labels); a rotated/scaled label would get an
+// axis-aligned background instead of a rotated one, which is still far better than none.
+//
+// Only solid-color backgrounds are handled — an object/image `background` (used for
+// background images) is out of scope and left to the text content as before.
+export function convertTextBackground(attribute: any = {}, graphic: any): string {
+  const { background } = attribute;
+
+  if (isNil(background) || typeof background !== "string") {
+    return "";
+  }
+
+  const bounds = graphic && graphic.AABBBounds;
+  if (
+    !bounds ||
+    typeof bounds.width !== "function" ||
+    typeof bounds.height !== "function"
+  ) {
+    return "";
+  }
+
+  const x = bounds.x1;
+  const y = bounds.y1;
+  const width = bounds.width();
+  const height = bounds.height();
+
+  if (!(width > 0) || !(height > 0)) {
+    return "";
+  }
+
+  // backgroundOpacity defaults to fillOpacity (canvas parity).
+  const backgroundOpacity = attribute.backgroundOpacity ?? attribute.fillOpacity;
+  const { backgroundCornerRadius } = attribute;
+
+  const style: Record<string, any> = {
+    fill: background,
+    stroke: "none",
+    "pointer-events": "none",
+  };
+  if (!isNil(backgroundOpacity)) {
+    style["fill-opacity"] = backgroundOpacity;
+  }
+
+  // Corner radius: uniform (number, or array of equal values) -> rx/ry; per-corner array -> path.
+  // Mirrors convertRectStyle so background rounding matches how the plugin renders rects.
+  const isUniform =
+    backgroundCornerRadius === +backgroundCornerRadius ||
+    (Array.isArray(backgroundCornerRadius) &&
+      backgroundCornerRadius.every((entry) => entry === backgroundCornerRadius[0]));
+
+  if (Array.isArray(backgroundCornerRadius) && !isUniform) {
+    const roundedPath = parseCornerRadiusPath(
+      [
+        { x, y },
+        { x: x + width, y },
+        { x: x + width, y: y + height },
+        { x, y: y + height },
+      ],
+      backgroundCornerRadius,
+      true
+    );
+    return `<path ${convertStyleToString({ ...style, d: roundedPath })} />`;
+  }
+
+  const radius = Array.isArray(backgroundCornerRadius)
+    ? backgroundCornerRadius[0]
+    : backgroundCornerRadius;
+  if (radius) {
+    const r = Math.min(radius, width / 2, height / 2);
+    style.rx = r;
+    style.ry = r;
+  }
+
+  return `<rect ${convertStyleToString({
+    ...style,
+    x,
+    y,
+    width,
+    height,
+  })} />`;
 }
 
 export function convertStyleToString(style: Record<string, any>) {
